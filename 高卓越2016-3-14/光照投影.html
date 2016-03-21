@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>光照投影</title>
+<style>
+	*{ margin:0;padding:0; }
+	p{ width:400px;height:50px;position:absolute;left:50%;top:50%;margin-left:-200px;margin-top:-25px;font-size:40px;text-align:center;line-height:50px;font-weight:bold;text-shadow:0 0 0 #000; }
+	span{ width:100px;height:100px;background:red;border-radius:50%;position:absolute;top:0;left:0;box-shadow:0 0 100px red;z-index:2; }
+</style>
+<script>
+	document.addEventListener('DOMContentLoaded',function(){
+		var oS = document.querySelector('span');
+		var oP = document.querySelector('p');
+		
+		document.onmousemove = function(ev){
+			oS.style.left = ev.clientX - oS.offsetWidth/2 + 'px';
+			oS.style.top = ev.clientY - oS.offsetHeight/2 + 'px';
+			
+			var disX = (oP.offsetLeft + oP.offsetWidth/2) - (oS.offsetLeft + oP.offsetWidth/2);
+			var disY = (oP.offsetTop + oP.offsetHeight/2) - (oS.offsetTop + oP.offsetHeight/2);
+			
+			var c = Math.sqrt(disX*disX + disY*disY);
+			
+			oP.style.textShadow = disX/2+'px '+disY/2+'px '+c/10+'px #000';
+		};	
+	},false);
+</script>
+</head>
+
+<body>
+	<span></span>
+	<p>中华人民共和国万岁</p>
+</body>
+</html>

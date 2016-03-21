@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自定义点歌台</title>
+<style>
+	*{ margin:0;padding:0; }
+	ul{ width:200px; }
+	ul li.on{ background:url(play.gif) no-repeat right center;padding-right:20px; }
+</style>
+<script>
+	document.addEventListener('DOMContentLoaded',function(){
+		var aMp3 = ['千千阙歌','时间都去哪儿了','小苹果','夜的钢琴曲','雨的印记'];
+		var oBtn = document.getElementById('btn');
+		var oA = new Audio();
+		var iNow = 0;
+		tab();
+		
+		function tab(){
+			oA.src = 'mp3/'+aMp3[iNow]+'.mp3';
+			oA.play();
+		}
+		
+		oA.onended = function(){
+			iNow++;
+			if(iNow == aMp3.length)iNow = 0;
+			tab();
+		};
+		
+		var bOk = true;
+		oBtn.onclick = function(){
+			if(bOk){
+				oA.volume = 0;
+			} else{
+				oA.volume = 1;
+			}
+			bOk = !bOk;
+		};
+		
+	},false);
+</script>
+</head>
+
+<body>
+	<input type="button" value="静音" id="btn" />
+</body>
+</html>

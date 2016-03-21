@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>官网作品展示</title>
+<style>
+	*{ margin:0;padding:0; }
+	li{ list-style:none; }
+	ul{ width:300px;height:200px;position:absolute;left:50%;top:50%;margin-left:-150px;margin-top:-100px;perspective:1000px; }
+	ul li{ width:100%;height:100%;background:green;border:1px solid black;position:absolute;left:0;top:0;text-align:center;line-height:200px;font-size:50px;font-weight:bold;-webkit-transition:.5s all ease; }
+	li.cur{ opacity:1;z-index:5; }
+	li.l1{ -webkit-transform:translateX(-200px) rotateY(60deg);opacity:0.7;z-index:3; }
+	li.r1{ -webkit-transform:translateX(200px) rotateY(-60deg);opacity:0.7;z-index:3; }
+	li.l2{ opacity:0;z-index:1;-webkit-transform:translateX(-250px) rotateY(65deg); }
+	li.r2{ opacity:0;z-index:1;-webkit-transform:translateX(250px) rotateY(-65deg); }
+</style>
+<script>
+	document.addEventListener('DOMContentLoaded',function(){
+		var oPrev = document.querySelector('.prev');	
+		var oNext = document.querySelector('.next');	
+		var aLi = document.querySelectorAll('ul li');
+		var aClass = [];
+		
+		for(var i=0;i<aLi.length;i++){
+			aClass.push(aLi[i].className);	
+		}
+		
+		oNext.onclick = function(){
+			aClass.unshift(aClass.pop());
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].className = aClass[i];
+			}
+		};
+		
+		oPrev.onclick = function(){
+			aClass.push(aClass.shift());
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].className = aClass[i];	
+			}
+		};
+	},false);
+</script>
+</head>
+
+<body>
+	<a href="javascript:;" class="prev">上一个</a>
+	<a href="javascript:;" class="next">下一个</a>
+	<ul>
+		<li class="cur">1</li>
+		<li class="r1">2</li>
+		<li class="r2">3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+		<li>9</li>
+		<li>10</li>
+		<li>11</li>
+		<li>12</li>
+		<li class="l2">13</li>
+		<li class="l1">14</li>
+	</ul>
+</body>
+</html>

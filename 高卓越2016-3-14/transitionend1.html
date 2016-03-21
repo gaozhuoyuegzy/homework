@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>transitionend1</title>
+<style>
+	*{ margin:0;padding:0; }
+	div{ width:200px;height:200px;background:green; }
+</style>
+<script>
+	document.addEventListener('DOMContentLoaded',function(){
+		var oDiv = document.querySelector('div');
+		oDiv.style.WebkitTransition = '1s all ease';
+		
+		oDiv.onclick = function(){
+			oDiv.style.width = '500px';
+			
+			setTimeout(function(){
+				alert(1);	
+			},1000);
+		};
+			
+	},false);
+</script>
+</head>
+
+<body>
+<div></div>
+</body>
+</html>

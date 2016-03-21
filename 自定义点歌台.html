@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自定义点歌台</title>
+<style>
+	*{ margin:0;padding:0; }
+	ul{ width:200px; }
+	ul li.on{ background:url(play.gif) no-repeat right center;padding-right:20px; }
+</style>
+<script>
+	document.addEventListener('DOMContentLoaded',function(){
+		var aMp3 = ['千千阙歌','时间都去哪儿了','小苹果','夜的钢琴曲','雨的印记'];
+		var oA = document.querySelector('audio');
+		var aLi = document.querySelectorAll('ul li');
+		var iNow = 0;
+		
+		for(var i=0;i<aLi.length;i++){
+			(function(index){
+				aLi[i].ondblclick = function(){
+					iNow = index;
+					tab();
+				};	
+			})(i);
+		}	
+		
+		function tab(){
+			for(var i=0;i<aLi.length;i++){
+				aLi[i].className = '';	
+			}
+			aLi[iNow].className = 'on';
+			oA.src = 'mp3/'+aMp3[iNow]+'.mp3';
+			oA.play();
+		}
+	},false);
+</script>
+</head>
+
+<body>
+	<audio controls></audio>
+	<ul>
+		<li>千千阙歌</li>
+		<li>时间都去哪儿了</li>
+		<li>小苹果</li>
+		<li>夜的钢琴曲</li>
+		<li>雨的印记</li>
+	</ul>
+</body>
+</html>

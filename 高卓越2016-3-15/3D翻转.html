@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>3D翻转</title>
+<style>
+	*{ margin:0;padding:0; }
+	.box{ width:200px;height:300px;position:relative;margin:100px auto;-webkit-transform-style:preserve-3d; -webkit-transition:1s all ease;-webkit-transform:perspective(800px) rotateY(0deg); }
+	.box span{ width:100%;height:100%;position:absolute;top:0;left:0;text-align:center;line-height:300px;font-size:40px; }
+	.box .front{ background:red;-webkit-transform:translateZ(10px); }
+	.box .back{ background:green;-webkit-transform:translateZ(-1px) scale(-1,1); }
+	.box:active{ -webkit-transform:perspective(800px) rotateY(180deg); }
+</style>
+</head>
+
+<body>
+	<div class="box">
+		<span class="front">正</span>
+		<span class="back">反</span>
+	</div>
+</body>
+</html>
